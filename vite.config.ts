@@ -32,10 +32,6 @@ const AUTO_IMPORT_CONFIG = {
       type: true,
     },
     {
-      from: "react-router",
-      imports: ["RouterProvider", "createHashRouter", "Outlet", "redirect", "generatePath"],
-    },
-    {
       from: "motion",
       imports: ["MotionProps"],
       type: true,
@@ -46,7 +42,9 @@ const AUTO_IMPORT_CONFIG = {
       "motion/react-client": [["*", "motion"]],
       "motion/react": ["AnimatePresence"],
       "tailwind-merge": ["twMerge"],
-      "react-hot-toast": ["default", "toast"],
+      "react-hot-toast": [["default", "toast"]],
+      "react-router": ["createHashRouter", "Outlet", "redirect", "generatePath"],
+      "@tanstack/react-query": ["useQuery", "useMutation", "useQueryClient", "QueryClient"],
     },
   ],
   dirs: [
@@ -55,6 +53,7 @@ const AUTO_IMPORT_CONFIG = {
     "./packages/shared-vendor/components/**/*",
     "./packages/shared-vendor/providers/**",
     "./src/hooks/**",
+    "./src/providers/**",
   ],
   dirsScanOptions: {
     filePatterns: [".ts", ".tsx", ".js", ".jsx"],
@@ -83,20 +82,8 @@ export default ({ mode = "dev" } = {}) => {
     },
     server: {
       proxy: {
-        "^/(post)(.*)?$": {
+        "^api/(auth|movie)(.*)?$": {
           target: process.env.VITE_DEFAULT_URL,
-          ws: false,
-          secure: false,
-          changeOrigin: true,
-        },
-        "^/(forecast)(.*)?$": {
-          target: process.env.VITE_WEATHER_URL,
-          ws: false,
-          secure: false,
-          changeOrigin: true,
-        },
-        "^/(search)(.*)?$": {
-          target: process.env.VITE_GEO_CODING_URL,
           ws: false,
           secure: false,
           changeOrigin: true,

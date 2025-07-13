@@ -3,6 +3,7 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 
 import { includeIgnoreFile } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
@@ -21,6 +22,7 @@ const compat = new FlatCompat({
 export default tseslint.config(
   includeIgnoreFile(gitignorePath),
   ...compat.extends("./.eslintrc-auto-import.json"),
+  ...pluginQuery.configs["flat/recommended"],
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx,js,jsx}"],
