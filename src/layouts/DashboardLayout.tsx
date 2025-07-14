@@ -4,8 +4,8 @@ const DashboardLayout = () => {
   useInitRefreshTokenMutation();
 
   return (
-    <div>
-      <span>hello</span>
+    <div className="grid grid-cols-[248px_1fr]">
+      <NavigationSideMenu />
 
       <Outlet />
     </div>
