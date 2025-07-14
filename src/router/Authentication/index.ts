@@ -1,26 +1,26 @@
 import { ROUTES } from "@/constants/Authentication";
 
-import { lazyRoute } from "@shared-vendor/helpers";
+import { defineRoute } from "@/helpers";
 
 const routes: RouteObject[] = [
-  {
+  defineRoute({
     path: ROUTES.ROOT_PATH,
-    lazy: lazyRoute(() => import("@/views/Authentication/AuthenticationRoot")),
+    module: () => import("@/views/Authentication/AuthenticationRoot"),
     children: [
-      {
+      defineRoute({
         index: true,
         loader: () => redirect(ROUTES.SIGNIN_PATH),
-      },
-      {
+      }),
+      defineRoute({
         path: ROUTES.SIGNIN_PATH,
-        lazy: lazyRoute(() => import("@/views/Authentication/AuthenticationSignin")),
-      },
-      {
+        module: () => import("@/views/Authentication/AuthenticationSignin"),
+      }),
+      defineRoute({
         path: ROUTES.SIGNUP_PATH,
-        lazy: lazyRoute(() => import("@/views/Authentication/AuthenticationSignup")),
-      },
+        module: () => import("@/views/Authentication/AuthenticationSignup"),
+      }),
     ],
-  },
+  }),
 ];
 
 export default routes;
