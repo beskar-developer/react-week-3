@@ -2,24 +2,24 @@ import type { Props as ButtonProps } from "@shared-vendor/components/Button/Base
 
 import { ROUTES } from "@/constants/Authentication";
 
-export const useAuthenticationSigninButton = ({
+export const useAuthenticationSignupButton = ({
   isSubmitting,
 }: Pick<IAuthenticationButton, "isSubmitting">) => {
   const navigate = useNavigate();
 
-  const redirectToSignup = () => navigate(`${ROUTES.ROOT_PATH}/${ROUTES.SIGNUP_PATH}`);
+  const redirectToSignin = () => navigate(`${ROUTES.ROOT_PATH}/${ROUTES.SIGNIN_PATH}`);
 
   const actions: ButtonProps[] = [
     {
-      children: "ورود",
+      children: "ثبت نام",
       loading: isSubmitting,
       type: "submit",
     },
     {
-      children: "ثبت نام",
+      children: "بازگشت",
       type: "button",
       variant: "text",
-      onClick: redirectToSignup,
+      onClick: redirectToSignin,
     },
   ];
 

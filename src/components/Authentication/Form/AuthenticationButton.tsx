@@ -1,5 +1,5 @@
-export const AuthenticationSigninButton = ({ isSubmitting }: IAuthenticationSigninButton) => {
-  const { actions } = useAuthenticationSigninButton({ isSubmitting });
+export const AuthenticationButton = ({ isSubmitting, useButton }: IAuthenticationButton) => {
+  const { actions } = useButton({ isSubmitting });
 
   return (
     <div className="flex w-full gap-4">
