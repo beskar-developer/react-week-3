@@ -54,11 +54,11 @@ const AUTO_IMPORT_CONFIG = {
     "./packages/shared-vendor/providers/**",
     "./src/hooks/**",
     "./src/providers/**",
+    "./src/components/**/*",
   ],
   dirsScanOptions: {
     filePatterns: [".ts", ".tsx", ".js", ".jsx"],
     fileFilter: (file: string) => !file.includes(".type"),
-    types: false,
   },
   dts: true,
   eslintrc: {
@@ -82,7 +82,7 @@ export default ({ mode = "dev" } = {}) => {
     },
     server: {
       proxy: {
-        "^api/(auth|movie)(.*)?$": {
+        "^/(auth|movie)(.*)?$": {
           target: process.env.VITE_DEFAULT_URL,
           ws: false,
           secure: false,
