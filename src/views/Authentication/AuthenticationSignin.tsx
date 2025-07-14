@@ -1,5 +1,5 @@
 const AuthenticationSignin = () => {
-  return <div>Signin</div>;
+  return <AuthenticationSigninForm />;
 };
 
 export default AuthenticationSignin;

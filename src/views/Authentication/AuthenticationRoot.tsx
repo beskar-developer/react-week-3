@@ -1,6 +1,6 @@
 const AuthenticationRoot = () => {
   return (
-    <div>
+    <div className="flex h-screen w-screen items-center justify-center">
       <Outlet />
     </div>
   );

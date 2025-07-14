@@ -1,4 +1,4 @@
-import { ROUTES } from "@/constants/Authentication/router";
+import { ROUTES } from "@/constants/Authentication";
 
 import { lazyRoute } from "@shared-vendor/helpers";
 
