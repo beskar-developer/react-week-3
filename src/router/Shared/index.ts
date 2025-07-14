@@ -1,7 +1,17 @@
 import { ROUTES } from "@/constants/Shared";
 import { ROUTES as AUTHENTICATION_ROUTES } from "@/constants/Authentication";
+import { ROUTES as MOVIE_ROUTES } from "@/constants/Movie";
 
+import { Token } from "@shared-vendor/helpers";
 import { defineRoute } from "@/helpers";
+
+const redirectToIndexRoute = () => {
+  const isAuthenticated = Token.getAccessToken();
+
+  if (isAuthenticated) return redirect(MOVIE_ROUTES.ROOT_PATH);
+
+  return redirect(AUTHENTICATION_ROUTES.ROOT_PATH);
+};
 
 const routes: RouteObject[] = [
   defineRoute({
@@ -9,7 +19,7 @@ const routes: RouteObject[] = [
     children: [
       defineRoute({
         index: true,
-        loader: () => redirect(AUTHENTICATION_ROUTES.ROOT_PATH),
+        loader: redirectToIndexRoute,
       }),
     ],
   }),

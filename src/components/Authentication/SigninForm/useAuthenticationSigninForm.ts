@@ -40,7 +40,10 @@ export const useAuthenticationSigninForm = () => {
 
   const { mutate } = useSigninMutation();
 
-  const submitForm = handleSubmit((formValues) => mutate(formValues, { onError: () => reset() }));
+  const onError = () => reset();
+  const onSubmit = (formValues: AuthenticationSigninFormValues) => mutate(formValues, { onError });
+
+  const submitForm = handleSubmit(onSubmit);
 
   return { fields, errors, isSubmitting, register, submitForm };
 };

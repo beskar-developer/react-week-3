@@ -10,6 +10,7 @@ type Route = RouteObject & {
   module?: any;
   authentication?: boolean;
   loader?: LoaderFunction;
+  layout?: string;
 };
 
 const wrapLoader = (loader?: LoaderFunction) => (args: LoaderParameters[0], context: LoaderParameters[1]) => {
@@ -21,14 +22,32 @@ const wrapLoader = (loader?: LoaderFunction) => (args: LoaderParameters[0], cont
 
   return redirect(ROUTES.ROOT_PATH);
 };
+const wrapRoute = (route: RouteObject, layout: Route["layout"]) => {
+  if (!layout) return route;
 
-export const defineRoute = ({ module, loader, authentication, ...route }: Route) => {
+  return defineRoute({
+    module: () => import(`../layouts/${layout}Layout.tsx`),
+    children: [route],
+  });
+};
+
+export const defineRoute = ({
+  module,
+  loader,
+  authentication,
+  layout,
+  ...routeAttrs
+}: Route): RouteObject => {
   const hasLoader = loader ?? authentication;
   const wrappedLoader = authentication ? wrapLoader(loader) : loader;
 
-  return {
+  const route = {
     ...(module && { lazy: lazyRoute(module) }),
     ...(hasLoader && { loader: wrappedLoader }),
-    ...route,
+    ...routeAttrs,
   };
+
+  const wrappedRoute = wrapRoute(route, layout);
+
+  return wrappedRoute;
 };

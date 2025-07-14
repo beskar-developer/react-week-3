@@ -3,6 +3,7 @@ import type { RefreshTokenResponse, SigninResponse } from "@/api/Authentication/
 import { Token } from "@shared-vendor/helpers";
 import router from "@/router";
 
+import { ROUTES as MOVIE_ROUTES } from "@/constants/Movie";
 import { MUTATION_KEYS, ROUTES } from "@/constants/Authentication";
 
 import service from "@/api/Authentication/service";
@@ -10,6 +11,8 @@ import service from "@/api/Authentication/service";
 const onSigninSuccess = ({ accessToken, refreshToken }: SigninResponse) => {
   Token.setAccessToken(accessToken);
   Token.setRefreshToken(refreshToken);
+
+  router.navigate(MOVIE_ROUTES.ROOT_PATH);
 };
 const SIGNIN_MUTATION_CONFIG = {
   mutationFn: service.signin,

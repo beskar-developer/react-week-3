@@ -52,7 +52,10 @@ export const useAuthenticationSignupForm = () => {
 
   const { mutate } = useSignupMutation();
 
-  const submitForm = handleSubmit((formValues) => mutate(formValues, { onError: () => reset() }));
+  const onError = () => reset();
+  const onSubmit = (formValues: AuthenticationSignupFormValues) => mutate(formValues, { onError });
+
+  const submitForm = handleSubmit(onSubmit);
 
   return { fields, errors, isSubmitting, register, submitForm };
 };
