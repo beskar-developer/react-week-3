@@ -1,8 +1,9 @@
 import type { RefreshTokenResponse, SigninResponse } from "@/api/Authentication/type";
 
 import { Token } from "@shared-vendor/helpers";
+import router from "@/router";
 
-import { MUTATION_KEYS } from "@/constants/Authentication";
+import { MUTATION_KEYS, ROUTES } from "@/constants/Authentication";
 
 import service from "@/api/Authentication/service";
 
@@ -16,18 +17,26 @@ const SIGNIN_MUTATION_CONFIG = {
   onSuccess: onSigninSuccess,
 };
 
+const onSignupSuccess = () => router.navigate(ROUTES.ROOT_PATH);
 const SIGNUP_MUTATION_CONFIG = {
   mutationFn: service.signup,
   mutationKey: MUTATION_KEYS.SIGNUP,
+  onSuccess: onSignupSuccess,
 };
 
 const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenResponse) => {
   Token.setRefreshToken(refreshToken);
   Token.respondAccessToken(accessToken);
 };
+const onRefreshTokenError = () => {
+  Token.clear();
+  router.navigate(ROUTES.ROOT_PATH);
+};
+
 const REFRESH_TOKEN_MUTATION_CONFIG = {
   mutationFn: service.refreshToken,
   mutationKey: MUTATION_KEYS.REFRESH_TOKEN,
+  onError: onRefreshTokenError,
   onSuccess: onRefreshTokenSuccess,
 };
 
