@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { LoaderFunction } from "react-router";
 
+import router from "@/router";
+
 import { ROUTES } from "@/constants/Authentication";
 
 import { lazyRoute, Token } from "@shared-vendor/helpers";
@@ -50,4 +52,9 @@ export const defineRoute = ({
   const wrappedRoute = wrapRoute(route, layout);
 
   return wrappedRoute;
+};
+
+export const logout = () => {
+  Token.clear();
+  router.navigate(ROUTES.ROOT_PATH);
 };

@@ -1,5 +1,6 @@
 import type { RefreshTokenResponse, SigninResponse } from "@/api/Authentication/type";
 
+import { logout } from "@/helpers";
 import { Token } from "@shared-vendor/helpers";
 import router from "@/router";
 
@@ -31,10 +32,7 @@ const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenRespon
   Token.setRefreshToken(refreshToken);
   Token.respondAccessToken(accessToken);
 };
-const onRefreshTokenError = () => {
-  Token.clear();
-  router.navigate(ROUTES.ROOT_PATH);
-};
+const onRefreshTokenError = logout;
 
 const REFRESH_TOKEN_MUTATION_CONFIG = {
   mutationFn: service.refreshToken,
