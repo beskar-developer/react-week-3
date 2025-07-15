@@ -7,11 +7,14 @@ import router from "@/router";
 import { ROUTES as MOVIE_ROUTES } from "@/constants/Movie";
 import { MUTATION_KEYS, ROUTES } from "@/constants/Authentication";
 
+import { localStorage } from "@shared-vendor/services";
 import service from "@/api/Authentication/service";
 
-const onSigninSuccess = ({ accessToken, refreshToken }: SigninResponse) => {
+const onSigninSuccess = ({ accessToken, refreshToken, username, email }: SigninResponse) => {
   Token.setAccessToken(accessToken);
   Token.setRefreshToken(refreshToken);
+
+  localStorage.setItem("USER", { username, email });
 
   router.navigate(MOVIE_ROUTES.ROOT_PATH);
 };

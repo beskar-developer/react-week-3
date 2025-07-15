@@ -1,4 +1,4 @@
-import { useSignupMutation } from "@/api/Authentication/mutations";
+import { useSignupMutation } from "@/api/Authentication/mutation";
 
 const INITIAL_FORM_VALUES: AuthenticationSignupFormValues = {
   username: "",

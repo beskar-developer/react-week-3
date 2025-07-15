@@ -1,4 +1,4 @@
-import { useInitRefreshTokenMutation } from "@/api/Authentication/mutations";
+import { useInitRefreshTokenMutation } from "@/api/Authentication/mutation";
 
 const DashboardLayout = () => {
   useInitRefreshTokenMutation();

@@ -1,4 +1,4 @@
-import { useSigninMutation } from "@/api/Authentication/mutations";
+import { useSigninMutation } from "@/api/Authentication/mutation";
 
 const INITIAL_FORM_VALUES: AuthenticationSigninFormValues = {
   username: "",
