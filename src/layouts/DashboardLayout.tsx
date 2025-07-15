@@ -4,10 +4,12 @@ const DashboardLayout = () => {
   useInitRefreshTokenMutation();
 
   return (
-    <div className="grid grid-cols-[248px_1fr]">
+    <div className="grid grid-cols-[248px_1fr] overflow-hidden">
       <NavigationSideMenu />
 
-      <Outlet />
+      <div className="h-screen overflow-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };
