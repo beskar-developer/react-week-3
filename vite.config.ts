@@ -28,12 +28,17 @@ const AUTO_IMPORT_CONFIG = {
     },
     {
       from: "react-router",
-      imports: ["RouteObject"],
+      imports: ["RouteObject", "SetURLSearchParams"],
       type: true,
     },
     {
       from: "motion",
       imports: ["MotionProps"],
+      type: true,
+    },
+    {
+      from: "@tanstack/react-query",
+      imports: ["QueryClientConfig"],
       type: true,
     },
     {
@@ -43,8 +48,16 @@ const AUTO_IMPORT_CONFIG = {
       "motion/react": ["AnimatePresence"],
       "tailwind-merge": ["twMerge"],
       "react-hot-toast": [["default", "toast"]],
-      "react-router": ["createHashRouter", "Outlet", "redirect", "generatePath"],
-      "@tanstack/react-query": ["useQuery", "useMutation", "useQueryClient", "QueryClient"],
+      "react-router": ["createHashRouter", "Outlet", "redirect", "generatePath", "useSearchParams"],
+      "@tanstack/react-query": [
+        "useQuery",
+        "useMutation",
+        "useQueryClient",
+        "QueryClient",
+        "queryOptions",
+        "QueryCache",
+        "mutationOptions",
+      ],
     },
   ],
   dirs: [
@@ -52,7 +65,7 @@ const AUTO_IMPORT_CONFIG = {
     "./packages/shared-vendor/utils/**",
     "./packages/shared-vendor/components/**/*",
     "./packages/shared-vendor/providers/**",
-    "./src/hooks/**",
+    "./src/hooks/**/*",
     "./src/providers/**",
     "./src/components/**/*",
   ],
