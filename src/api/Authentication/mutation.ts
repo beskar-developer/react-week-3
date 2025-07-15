@@ -18,18 +18,18 @@ const onSigninSuccess = ({ accessToken, refreshToken, username, email }: SigninR
 
   router.navigate(MOVIE_ROUTES.ROOT_PATH);
 };
-const SIGNIN_MUTATION_CONFIG = {
+const SIGNIN_MUTATION_CONFIG = mutationOptions({
   mutationFn: service.signin,
   mutationKey: MUTATION_KEYS.SIGNIN,
   onSuccess: onSigninSuccess,
-};
+});
 
 const onSignupSuccess = () => router.navigate(ROUTES.ROOT_PATH);
-const SIGNUP_MUTATION_CONFIG = {
+const SIGNUP_MUTATION_CONFIG = mutationOptions({
   mutationFn: service.signup,
   mutationKey: MUTATION_KEYS.SIGNUP,
   onSuccess: onSignupSuccess,
-};
+});
 
 const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenResponse) => {
   Token.setRefreshToken(refreshToken);
@@ -37,12 +37,12 @@ const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenRespon
 };
 const onRefreshTokenError = logout;
 
-const REFRESH_TOKEN_MUTATION_CONFIG = {
+const REFRESH_TOKEN_MUTATION_CONFIG = mutationOptions({
   mutationFn: service.refreshToken,
   mutationKey: MUTATION_KEYS.REFRESH_TOKEN,
   onError: onRefreshTokenError,
   onSuccess: onRefreshTokenSuccess,
-};
+});
 
 export const useSigninMutation = () => useMutation(SIGNIN_MUTATION_CONFIG);
 export const useSignupMutation = () => useMutation(SIGNUP_MUTATION_CONFIG);
