@@ -1,6 +1,6 @@
 export default function MovieDetails() {
   return (
-    <div>
+    <div className="h-full">
       <Outlet />
     </div>
   );

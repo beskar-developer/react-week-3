@@ -1,0 +1,5 @@
+export const QUERY_KEYS = Object.freeze({
+  GET_MOVIES: ["GET_MOVIES"],
+  GET_MOVIE_DETAILS: ["GET_MOVIE_DETAILS"],
+  GET_GENRES: ["GET_GENRES"],
+});
