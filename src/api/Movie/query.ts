@@ -47,15 +47,16 @@ export const useMoviesQuery = () => {
   const query = useQuery(createMoviesQueryConfig(page, debouncedSearch));
 
   const totalPages = query.data?.totalPages;
-  const isPageLesserThatTotalPages = page < (totalPages ?? 1);
-  const isPageGreaterThanOne = page > 1;
 
   useEffect(() => {
+    const isPageLesserThatTotalPages = page < (totalPages ?? 1);
+    const isPageGreaterThanOne = page > 1;
+
     if (isPageLesserThatTotalPages)
       queryClient.prefetchQuery(createMoviesQueryConfig(page + 1, debouncedSearch));
 
     if (isPageGreaterThanOne) queryClient.prefetchQuery(createMoviesQueryConfig(page - 1, debouncedSearch));
-  }, [isPageLesserThatTotalPages, isPageGreaterThanOne, debouncedSearch]);
+  }, [page, totalPages, debouncedSearch]);
 
   return query;
 };
