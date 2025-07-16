@@ -1,8 +1,6 @@
-import { QueryClientProvider as Provider } from "@tanstack/react-query";
-
 import { ONE_MINUTE } from "@shared-vendor/constants";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { sessionStorage } from "@shared-vendor/services";
 
 const QUERY_CLIENT_OPTIONS: QueryClientConfig = {
   defaultOptions: {
@@ -17,14 +15,18 @@ const QUERY_CLIENT_OPTIONS: QueryClientConfig = {
     onError: (error) => console.error(error),
   }),
 };
+
 const queryClient = new QueryClient(QUERY_CLIENT_OPTIONS);
+const persister = createAsyncStoragePersister({
+  storage: sessionStorage,
+});
 
 export const QueryClientProvider = ({ children }: FragmentProps) => {
   return (
-    <Provider client={queryClient}>
+    <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
       <ReactQueryDevtools initialIsOpen={false} />
 
       {children}
-    </Provider>
+    </PersistQueryClientProvider>
   );
 };

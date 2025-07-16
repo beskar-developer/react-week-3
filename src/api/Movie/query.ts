@@ -1,4 +1,5 @@
 import { QUERY_KEYS } from "@/constants/Movie/query";
+import { ONE_DAY } from "@shared-vendor/constants";
 
 import service from "@/api/Movie/service";
 
@@ -7,6 +8,7 @@ export const useGenresQuery = () => {
     queryKey: QUERY_KEYS.GET_GENRES,
     queryFn: () => service.getGenres(),
     initialData: [] as Awaited<ReturnType<typeof service.getGenres>>,
+    staleTime: ONE_DAY,
     initialDataUpdatedAt: 0,
   });
 

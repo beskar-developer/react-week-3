@@ -58,6 +58,9 @@ const AUTO_IMPORT_CONFIG = {
         "QueryCache",
         "mutationOptions",
       ],
+      "@tanstack/query-async-storage-persister": ["createAsyncStoragePersister"],
+      "@tanstack/react-query-persist-client": ["PersistQueryClientProvider"],
+      "@tanstack/react-query-devtools": ["ReactQueryDevtools"],
     },
   ],
   dirs: [
