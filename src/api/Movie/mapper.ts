@@ -35,7 +35,7 @@ class Mapper {
     vote_average,
     popularity,
     ...result
-  }: Omit<GetMoviesResponse["results"][number], "genre_ids">) {
+  }: GetMoviesResponse["results"][number]) {
     return {
       posterPath: `${IMAGE_URL}/${poster_path}`,
       releaseDate: Mapper.formatReleaseDate(release_date),

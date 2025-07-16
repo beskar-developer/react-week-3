@@ -11,7 +11,6 @@ export const getGenresResponseSchema = z.object({
 
 export const movieSchema = z.object({
   id: z.number().positive(),
-  genre_ids: z.array(genreSchema.shape.id),
   overview: z.string(),
   popularity: z.number(),
   poster_path: z.string().nullable(),
@@ -27,7 +26,7 @@ export const getMoviesResponseSchema = z.object({
   results: z.array(movieSchema),
 });
 
-export const getMovieDetailsResponseSchema = movieSchema.omit({ genre_ids: true }).extend({
+export const getMovieDetailsResponseSchema = movieSchema.extend({
   budget: z.number().nonnegative(),
   genres: z.array(genreSchema),
   imdb_id: z.string(),
