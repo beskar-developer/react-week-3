@@ -1,5 +1,3 @@
-import type { GetMovieDetailsParams } from "@/api/Movie/type";
-
 import { QUERY_KEYS } from "@/constants/Movie/query";
 
 import service from "@/api/Movie/service";
@@ -8,15 +6,21 @@ export const useGenresQuery = () => {
   const query = useQuery({
     queryKey: QUERY_KEYS.GET_GENRES,
     queryFn: () => service.getGenres(),
+    initialData: [] as Awaited<ReturnType<typeof service.getGenres>>,
+    initialDataUpdatedAt: 0,
   });
 
   return query;
 };
 
-export const useMovieDetails = ({ id }: GetMovieDetailsParams) => {
+export const useMovieDetailsQuery = () => {
+  const { id } = useMovieDetailsParams();
+
   const query = useQuery({
     queryKey: [...QUERY_KEYS.GET_MOVIE_DETAILS, id],
     queryFn: () => service.getMovieDetails({ id }),
+    initialData: {} as Awaited<ReturnType<typeof service.getMovieDetails>>,
+    initialDataUpdatedAt: 0,
   });
 
   return query;

@@ -25,16 +25,22 @@ class Mapper {
     return format(releaseDate, FULL_DATE_FORMAT);
   }
 
+  private static toFixedNumber(number: number) {
+    return +number.toFixed(1);
+  }
+
   private static toGetMovieResponse({
     poster_path,
     release_date,
     vote_average,
+    popularity,
     ...result
-  }: GetMoviesResponse["results"][number]) {
+  }: Omit<GetMoviesResponse["results"][number], "genre_ids">) {
     return {
       posterPath: `${IMAGE_URL}/${poster_path}`,
       releaseDate: Mapper.formatReleaseDate(release_date),
-      voteAverage: +vote_average.toFixed(1),
+      voteAverage: Mapper.toFixedNumber(vote_average),
+      popularity: Mapper.toFixedNumber(popularity),
       ...toCamelCaseKeys(result),
     };
   }

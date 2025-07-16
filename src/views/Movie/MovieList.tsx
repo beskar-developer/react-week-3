@@ -1,4 +1,4 @@
-export default function MovieDetails() {
+const MovieList = () => {
   return (
     <div className="flex h-full flex-col overflow-hidden pt-8">
       <MovieHeader />
@@ -6,4 +6,6 @@ export default function MovieDetails() {
       <MovieListContent />
     </div>
   );
-}
+};
+
+export default MovieList;
