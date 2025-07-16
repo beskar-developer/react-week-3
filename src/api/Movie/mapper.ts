@@ -20,7 +20,7 @@ class Mapper {
   }
 
   private static formatReleaseDate(releaseDate: string) {
-    if (!releaseDate) return "نا مشخص";
+    if (!releaseDate) return "نامشخص";
 
     return format(releaseDate, FULL_DATE_FORMAT);
   }
