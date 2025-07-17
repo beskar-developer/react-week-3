@@ -9,7 +9,7 @@ export const MovieDetailsTitle = () => {
     <>
       <h1 className="text-sm font-black sm:text-2xl">{title}</h1>
 
-      <p className="text-xs text-gray-600 dark:text-gray-300">{overview}</p>
+      <p className="text-surface-600 dark:text-surface-300 text-xs">{overview}</p>
     </>
   );
 };

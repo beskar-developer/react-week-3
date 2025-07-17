@@ -5,7 +5,7 @@ export const MovieCardRating = ({ voteAverage }: Pick<IMovieCard, "voteAverage">
     <div className="flex items-center gap-1">
       <span>10 / {voteAverage}</span>
 
-      <AiFillStar className="text-yellow-500" />
+      <AiFillStar className="text-warning-500" />
     </div>
   );
 };

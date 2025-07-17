@@ -17,7 +17,7 @@ const items = [
 
 export const NavigationSideMenu = () => {
   return (
-    <div className="flex h-screen flex-col gap-8 bg-indigo-50 px-4 py-6 pt-16 shadow-xl lg:pt-6 dark:bg-gray-800">
+    <div className="bg-primary-50 dark:bg-surface-800 flex h-screen flex-col gap-8 px-4 py-6 pt-16 shadow-xl lg:pt-6">
       <NavigationHeader />
 
       <NavigationMenu items={items} />

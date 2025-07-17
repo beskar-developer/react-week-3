@@ -11,7 +11,7 @@ export const MovieDetailsPrice = ({ label, value }: IMovieDetailsPrice) => {
       <span className="flex items-center gap-1">
         {convertNumberToLocaleString(value)}
 
-        <AiFillDollarCircle className="text-emerald-500" />
+        <AiFillDollarCircle className="text-success-500" />
       </span>
     </MovieCardRow>
   );

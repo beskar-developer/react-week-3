@@ -6,7 +6,7 @@ export const MovieSearchField = () => {
       label="جستجو"
       name="search"
       value={search}
-      containerClassName="bg-indigo-100"
+      containerClassName="bg-primary-100"
       onChange={(event) => setSearch(event.target.value)}
     />
   );
