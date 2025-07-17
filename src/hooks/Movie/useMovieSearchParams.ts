@@ -20,10 +20,10 @@ export const useMovieSearchParams = () => {
   const page = +(searchParams.get(KEYS.PAGE) ?? DEFAULT_PAGE);
   const search = searchParams.get(KEYS.SEARCH) ?? DEFAULT_SEARCH;
 
-  const debouncedSearch = useDebounce(search, 800);
-
   const setPage = createSetSearchParam(setSearchParams, KEYS.PAGE);
   const setSearch = createSetSearchParam(setSearchParams, KEYS.SEARCH);
+
+  const debouncedSearch = useDebounce(search, 800, () => setPage(1));
 
   return { page, search, debouncedSearch, setSearch, setPage };
 };
