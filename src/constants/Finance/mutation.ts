@@ -1,1 +1,5 @@
-export const MUTATION_KEYS = Object.freeze({});
+export const MUTATION_KEYS = Object.freeze({
+  ADD_CATEGORY: ["ADD_CATEGORY"],
+  EDIT_CATEGORY: ["EDIT_CATEGORY"],
+  DELETE_CATEGORY: ["DELETE_CATEGORY"],
+});
