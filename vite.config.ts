@@ -98,7 +98,7 @@ export default ({ mode = "dev" } = {}) => {
     },
     server: {
       proxy: {
-        "^/(auth|movie)(.*)?$": {
+        "^/(auth|movie|finance)(.*)?$": {
           target: process.env.VITE_DEFAULT_URL,
           ws: false,
           secure: false,
