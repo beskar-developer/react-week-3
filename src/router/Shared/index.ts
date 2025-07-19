@@ -6,7 +6,7 @@ import { Token } from "@shared-vendor/helpers";
 import { defineRoute } from "@/helpers";
 
 const redirectToIndexRoute = () => {
-  const isAuthenticated = Token.getAccessToken();
+  const isAuthenticated = Token.isAuthenticated();
 
   if (isAuthenticated) return redirect(MOVIE_ROUTES.ROOT_PATH);
 

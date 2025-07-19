@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { LoaderFunction } from "react-router";
 
@@ -16,7 +17,7 @@ type Route = RouteObject & {
 };
 
 const wrapLoader = (loader?: LoaderFunction) => (args: LoaderParameters[0], context: LoaderParameters[1]) => {
-  const isAuthenticated = Token.getAccessToken();
+  const isAuthenticated = Token.isAuthenticated();
 
   if (isAuthenticated) return loader?.(args, context) ?? null;
 
@@ -33,13 +34,7 @@ const wrapRoute = (route: RouteObject, layout: Route["layout"]) => {
   });
 };
 
-export const defineRoute = ({
-  module,
-  loader,
-  authentication,
-  layout,
-  ...routeAttrs
-}: Route): RouteObject => {
+export function defineRoute({ module, loader, authentication, layout, ...routeAttrs }: Route): RouteObject {
   const hasLoader = loader ?? authentication;
   const wrappedLoader = authentication ? wrapLoader(loader) : loader;
 
@@ -52,9 +47,10 @@ export const defineRoute = ({
   const wrappedRoute = wrapRoute(route, layout);
 
   return wrappedRoute;
-};
+}
 
 export const logout = () => {
   Token.clear();
+
   router.navigate(ROUTES.ROOT_PATH);
 };
