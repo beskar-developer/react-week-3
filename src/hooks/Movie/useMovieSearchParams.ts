@@ -1,18 +1,11 @@
+import { createSetSearchParam } from "@shared-vendor/helpers";
+
 const DEFAULT_PAGE = 1;
 const DEFAULT_SEARCH = "";
 const KEYS = {
   PAGE: "page",
   SEARCH: "search",
 };
-
-const createSetSearchParam =
-  <T>(setSearchParams: SetURLSearchParams, key: string) =>
-  (value: T) =>
-    setSearchParams((params) => {
-      params.set(key, String(value));
-
-      return params;
-    });
 
 export const useMovieSearchParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
