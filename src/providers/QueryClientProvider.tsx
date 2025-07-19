@@ -1,4 +1,4 @@
-import { ONE_MINUTE } from "@shared-vendor/constants";
+import { ONE_MINUTE, ONE_SECOND } from "@shared-vendor/constants";
 
 import { sessionStorage } from "@shared-vendor/services";
 
@@ -9,6 +9,7 @@ const QUERY_CLIENT_OPTIONS: QueryClientConfig = {
     },
     queries: {
       staleTime: 10 * ONE_MINUTE,
+      retryDelay: 2 * ONE_SECOND,
     },
   },
   queryCache: new QueryCache({
