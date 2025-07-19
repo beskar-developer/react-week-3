@@ -5,6 +5,7 @@ import type {
   DeleteTransactionPayload,
   EditCategoryPayload,
   EditTransactionPayload,
+  GetTransactionReportParams,
   GetTransactionsParams,
   IService,
 } from "@/api/Finance/type";
@@ -19,6 +20,7 @@ import {
   editCategoryResponseSchema,
   editTransactionResponseSchema,
   getCategoriesResponseSchema,
+  getTransactionReportResponseSchema,
   getTransactionsResponseSchema,
 } from "@/api/Finance/schema";
 
@@ -79,6 +81,14 @@ class Service implements IService {
 
   async deleteTransaction(payload: DeleteTransactionPayload) {
     await repository.deleteTransaction(payload);
+  }
+
+  async getTransactionReport(params: GetTransactionReportParams) {
+    const response = await repository.getTransactionReport(params);
+
+    const parsedResponse = prettifyParse(getTransactionReportResponseSchema, response);
+
+    return parsedResponse;
   }
 }
 

@@ -7,6 +7,7 @@ import {
   editCategoryResponseSchema,
   editTransactionResponseSchema,
   getCategoriesResponseSchema,
+  getTransactionReportResponseSchema,
   getTransactionsResponseSchema,
   transactionSchema,
 } from "@/api/Finance/schema";
@@ -42,6 +43,9 @@ export type AddTransactionResponse = z.infer<typeof addTransactionResponseSchema
 export type EditTransactionResponse = z.infer<typeof editTransactionResponseSchema>;
 export type DeleteTransactionResponse = void;
 
+export type GetTransactionReportParams = Omit<GetTransactionsParams, "categoryId">;
+export type GetTransactionReportResponse = z.infer<typeof getTransactionReportResponseSchema>;
+
 export interface IRepository {
   getCategories: () => Promise<GetCategoriesResponse>;
   addCategory: (payload: AddCategoryPayload) => Promise<AddCategoryResponse>;
@@ -51,6 +55,7 @@ export interface IRepository {
   addTransaction: (payload: AddTransactionPayload) => Promise<AddTransactionResponse>;
   editTransaction: (payload: EditTransactionPayload) => Promise<EditTransactionResponse>;
   deleteTransaction: (payload: DeleteCategoryPayload) => Promise<DeleteTransactionResponse>;
+  getTransactionReport: (params: GetTransactionReportParams) => Promise<GetTransactionReportResponse>;
 }
 
 export type IService = IRepository;

@@ -12,6 +12,8 @@ import type {
   EditTransactionPayload,
   EditTransactionResponse,
   GetCategoriesResponse,
+  GetTransactionReportParams,
+  GetTransactionReportResponse,
   GetTransactionsParams,
   GetTransactionsResponse,
   IRepository,
@@ -54,6 +56,10 @@ class Repository implements IRepository {
 
   deleteTransaction(id: DeleteTransactionPayload) {
     return client.delete<unknown, DeleteTransactionResponse>(`transaction/${id}`);
+  }
+
+  getTransactionReport(params: GetTransactionReportParams) {
+    return client.get<unknown, GetTransactionReportResponse>("transaction/report", { params });
   }
 }
 

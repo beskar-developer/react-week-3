@@ -13,9 +13,10 @@ export const addCategoryResponseSchema = z.object({
 });
 export const editCategoryResponseSchema = addCategoryResponseSchema.clone();
 
+const amountSchema = z.number().nonnegative();
 export const transactionSchema = z.object({
   id: z.string(),
-  amount: z.number().nonnegative(),
+  amount: amountSchema,
   date: z.iso.datetime(),
   note: z.string(),
   category: categorySchema,
@@ -27,3 +28,14 @@ export const addTransactionResponseSchema = z.object({
   transaction: transactionSchema,
 });
 export const editTransactionResponseSchema = addTransactionResponseSchema.clone();
+
+const byCategorySchema = z.record(z.string(), amountSchema);
+const byDaySchema = z.record(z.iso.date(), byCategorySchema);
+
+export const getTransactionReportResponseSchema = z.object({
+  totalIncome: amountSchema,
+  totalExpense: amountSchema,
+  balance: amountSchema,
+  byCategory: byCategorySchema,
+  byDay: byDaySchema,
+});
