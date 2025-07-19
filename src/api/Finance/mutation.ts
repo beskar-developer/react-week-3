@@ -73,10 +73,15 @@ export const useDeleteCategoryMutation = () => {
 const useOnTransactionSuccess = () => {
   const queryClient = useQueryClient();
 
-  const onSuccess = () =>
+  const onSuccess = () => {
     queryClient.invalidateQueries({
-      queryKey: QUERY_KEYS.GET_TRANSACTIONS,
+      predicate: ({ queryKey }) =>
+        [...QUERY_KEYS.GET_TRANSACTIONS, ...QUERY_KEYS.GET_TRANSACTION_REPORT].includes(
+          queryKey[0] as string,
+        ),
+      refetchType: "active",
     });
+  };
 
   return onSuccess;
 };
