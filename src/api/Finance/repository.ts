@@ -1,11 +1,19 @@
 import type {
   AddCategoryPayload,
   AddCategoryResponse,
+  AddTransactionPayload,
+  AddTransactionResponse,
   DeleteCategoryPayload,
   DeleteCategoryResponse,
+  DeleteTransactionPayload,
+  DeleteTransactionResponse,
   EditCategoryPayload,
   EditCategoryResponse,
+  EditTransactionPayload,
+  EditTransactionResponse,
   GetCategoriesResponse,
+  GetTransactionsParams,
+  GetTransactionsResponse,
   IRepository,
 } from "@/api/Finance/type";
 
@@ -28,6 +36,24 @@ class Repository implements IRepository {
 
   deleteCategory(id: DeleteCategoryPayload) {
     return client.delete<unknown, DeleteCategoryResponse>(`category/${id}`);
+  }
+
+  getTransactions(params: GetTransactionsParams) {
+    return client.get<unknown, GetTransactionsResponse>("transaction", { params });
+  }
+
+  addTransaction(payload: AddTransactionPayload) {
+    return client.post<unknown, AddTransactionResponse>("transaction", payload);
+  }
+
+  editTransaction(payload: EditTransactionPayload) {
+    const { id, ...transaction } = payload;
+
+    return client.put<unknown, EditTransactionResponse>(`transaction/${id}`, transaction);
+  }
+
+  deleteTransaction(id: DeleteTransactionPayload) {
+    return client.delete<unknown, DeleteTransactionResponse>(`transaction/${id}`);
   }
 }
 

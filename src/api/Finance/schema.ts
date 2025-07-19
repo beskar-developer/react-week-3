@@ -12,3 +12,18 @@ export const addCategoryResponseSchema = z.object({
   category: categorySchema,
 });
 export const editCategoryResponseSchema = addCategoryResponseSchema.clone();
+
+export const transactionSchema = z.object({
+  id: z.string(),
+  amount: z.number().nonnegative(),
+  date: z.iso.datetime(),
+  note: z.string(),
+  category: categorySchema,
+});
+
+export const getTransactionsResponseSchema = z.array(transactionSchema);
+export const addTransactionResponseSchema = z.object({
+  message: z.string(),
+  transaction: transactionSchema,
+});
+export const editTransactionResponseSchema = addTransactionResponseSchema.clone();

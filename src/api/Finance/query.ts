@@ -12,3 +12,16 @@ export const useCategoriesQuery = () => {
 
   return query;
 };
+
+export const useTransactionsQuery = () => {
+  const { startDate, endDate, categoryId } = useFinanceTransactionSearchParams();
+
+  const query = useQuery({
+    queryKey: [...QUERY_KEYS.GET_TRANSACTIONS, startDate, endDate, categoryId],
+    queryFn: () => service.getTransactions({ startDate, endDate, categoryId }),
+    initialData: [],
+    initialDataUpdatedAt: 0,
+  });
+
+  return query;
+};
