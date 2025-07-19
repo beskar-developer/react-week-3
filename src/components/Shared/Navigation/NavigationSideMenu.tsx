@@ -1,4 +1,5 @@
-import { ROUTES } from "@/constants/Movie";
+import { ROUTES as MOVIE_ROUTES } from "@/constants/Movie";
+import { ROUTES as FINANCE_ROUTES } from "@/constants/Finance";
 
 import { AiFillBank, AiFillVideoCamera } from "react-icons/ai";
 
@@ -6,12 +7,26 @@ const items = [
   {
     label: "فیلم",
     Icon: <AiFillVideoCamera />,
-    path: ROUTES.ROOT_PATH,
+    path: MOVIE_ROUTES.ROOT_PATH,
   },
   {
     label: "مدیرت مالی",
     Icon: <AiFillBank />,
-    path: "/finance",
+    path: FINANCE_ROUTES.ROOT_PATH,
+    children: [
+      {
+        label: "دسته بندی ها",
+        path: `${FINANCE_ROUTES.ROOT_PATH}/${FINANCE_ROUTES.CATEGORY_PATH}`,
+      },
+      {
+        label: "تراکنش ها",
+        path: `${FINANCE_ROUTES.ROOT_PATH}/${FINANCE_ROUTES.TRANSACTION_PATH}`,
+      },
+      {
+        label: "گزارشات",
+        path: `${FINANCE_ROUTES.ROOT_PATH}/${FINANCE_ROUTES.REPORT_PATH}`,
+      },
+    ],
   },
 ];
 
