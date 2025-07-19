@@ -3,7 +3,7 @@ import type {
   DeleteCategoryPayload,
   EditCategoryPayload,
   EditCategoryResponse,
-} from "@/api/Finance/type";
+} from "@/types/Finance";
 
 import { MUTATION_KEYS, QUERY_KEYS } from "@/constants/Finance";
 

@@ -8,7 +8,7 @@ import type {
   GetTransactionReportParams,
   GetTransactionsParams,
   IService,
-} from "@/api/Finance/type";
+} from "@/types/Finance";
 
 import { prettifyParse } from "@shared-vendor/helpers";
 

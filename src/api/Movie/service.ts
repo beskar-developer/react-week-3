@@ -1,4 +1,4 @@
-import type { GetMovieDetailsParams, GetMoviesParams, IService } from "@/api/Movie/type";
+import type { GetMovieDetailsParams, GetMoviesParams, IService } from "@/types/Movie";
 
 import { prettifyParse } from "@shared-vendor/helpers";
 

@@ -4,7 +4,7 @@ import type {
   GetMovieDetailsResponse,
   GetMoviesParams,
   GetMoviesResponse,
-} from "@/api/Movie/type";
+} from "@/types/Movie";
 
 import { FULL_DATE_FORMAT } from "@shared-vendor/constants";
 

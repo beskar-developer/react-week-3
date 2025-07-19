@@ -1,4 +1,4 @@
-import type { Movie } from "@/api/Movie/type";
+import type { Movie } from "@/types/Movie";
 
 export type IMovieCard = Omit<Movie, "genreIds">;
 

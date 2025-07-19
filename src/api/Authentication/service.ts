@@ -1,4 +1,4 @@
-import type { IService, RefreshTokenPayload, SigninPayload, SignupPayload } from "@/api/Authentication/type";
+import type { IService, RefreshTokenPayload, SigninPayload, SignupPayload } from "@/types/Authentication";
 
 import { prettifyParse } from "@shared-vendor/helpers";
 

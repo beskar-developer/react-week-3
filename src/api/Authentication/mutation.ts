@@ -1,4 +1,4 @@
-import type { RefreshTokenResponse, SigninResponse } from "@/api/Authentication/type";
+import type { RefreshTokenResponse, SigninResponse } from "@/types/Authentication";
 
 import { logout } from "@/helpers";
 import { Token } from "@shared-vendor/helpers";
@@ -35,7 +35,11 @@ const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenRespon
   Token.setRefreshToken(refreshToken);
   Token.respondAccessToken(accessToken);
 };
-const onRefreshTokenError = logout;
+const onRefreshTokenError = (error: Error) => {
+  if ("status" in error && error.status !== 401) return;
+
+  logout();
+};
 
 const REFRESH_TOKEN_MUTATION_CONFIG = mutationOptions({
   mutationFn: service.refreshToken,

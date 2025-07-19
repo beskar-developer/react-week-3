@@ -6,7 +6,7 @@ import type {
   SigninResponse,
   SignupPayload,
   SignupResponse,
-} from "@/api/Authentication/type";
+} from "@/types/Authentication";
 
 import client from "@/api/Authentication/client";
 

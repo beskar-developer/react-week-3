@@ -6,6 +6,7 @@ const routes: RouteObject[] = [
   defineRoute({
     path: ROUTES.ROOT_PATH,
     module: () => import("@/views/Authentication/AuthenticationRoot"),
+    authentication: false,
     children: [
       defineRoute({
         index: true,

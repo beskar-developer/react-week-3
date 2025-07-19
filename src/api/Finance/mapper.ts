@@ -1,4 +1,4 @@
-import type { GetTransactionsParams } from "@/api/Finance/type";
+import type { GetTransactionsParams } from "@/types/Finance";
 
 class Mapper {
   private static removeEmptyValues<T extends object>(object: T) {

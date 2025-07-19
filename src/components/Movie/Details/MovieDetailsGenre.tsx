@@ -1,4 +1,4 @@
-import type { Genre } from "@/api/Movie/type";
+import type { Genre } from "@/types/Movie";
 
 import { useGenresQuery } from "@/api/Movie/query";
 

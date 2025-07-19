@@ -5,7 +5,7 @@ import type {
   GetMoviesParams,
   GetMoviesResponse,
   IRepository,
-} from "@/api/Movie/type";
+} from "@/types/Movie";
 
 import client from "@/api/Movie/client";
 

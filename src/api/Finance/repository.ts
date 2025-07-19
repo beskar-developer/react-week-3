@@ -17,7 +17,7 @@ import type {
   GetTransactionsParams,
   GetTransactionsResponse,
   IRepository,
-} from "@/api/Finance/type";
+} from "@/types/Finance";
 
 import client from "@/api/Finance/client";
 
