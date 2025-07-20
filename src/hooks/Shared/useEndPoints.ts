@@ -5,9 +5,15 @@ import type { CamelCase } from "@shared-vendor/types";
 type GetTransactionsGeneratorOptions = Record<"startDate" | "endDate" | "categoryId", string>;
 type GetTransactionReportOptions = Omit<GetTransactionsGeneratorOptions, "categoryId">;
 
+const joinKeys = (keys: object, separator = "&") =>
+  Object.entries(keys).reduce(
+    (acc, [key, value], index) => `${acc}${index ? separator : ""}${key}=${value}`,
+    "",
+  );
+
 const MOVIE_QUERY_KEYS = [
-  { key: "GET_MOVIES", generator: (page: number, search: string) => `${page}/${search}` },
-  { key: "GET_MOVIE_DETAILS", generator: (id: Movie["id"]) => `${id}` },
+  { key: "GET_MOVIES", generator: (page: number, search: string) => joinKeys({ page, search }) },
+  { key: "GET_MOVIE_DETAILS", generator: (id: Movie["id"]) => joinKeys({ id }) },
   "GET_GENRES",
 ] as const;
 
@@ -15,11 +21,11 @@ const FINANCE_QUERY_KEYS = [
   {
     key: "GET_TRANSACTIONS",
     generator: ({ startDate, endDate, categoryId }: GetTransactionsGeneratorOptions) =>
-      `${startDate}/${endDate}/${categoryId}`,
+      joinKeys({ startDate, endDate, categoryId }),
   },
   {
     key: "GET_TRANSACTION_REPORT",
-    generator: ({ startDate, endDate }: GetTransactionReportOptions) => `${startDate}/${endDate}`,
+    generator: ({ startDate, endDate }: GetTransactionReportOptions) => joinKeys({ startDate, endDate }),
   },
   "GET_CATEGORIES",
 ] as const;
@@ -42,7 +48,7 @@ type Key = string | KeyObject;
 
 type ExtractKey<K extends Key> = K extends KeyObject ? K["key"] : K;
 type ExtractGenerator<K extends Key> = K extends KeyObject
-  ? (...args: Parameters<K["generator"]>) => [`${K["key"]}/${ReturnType<K["generator"]>}`]
+  ? (...args: Parameters<K["generator"]>) => [`${K["key"]}?${ReturnType<K["generator"]>}`]
   : () => [K];
 type NormalizeKey<K extends Key> = CamelCase<ExtractKey<K>>;
 
@@ -54,7 +60,7 @@ const extractKey = (key: Key) => toCamelCase(isString(key) ? key : key.key);
 const extractGenerator = (key: Key) =>
   isString(key)
     ? () => [key]
-    : (...args: Parameters<typeof key.generator>) => [`${key.key}/${key.generator(...args)}`];
+    : (...args: Parameters<typeof key.generator>) => [`${key.key}?${key.generator(...args)}`];
 
 const generateEndPoints = <T extends readonly Key[]>(keys: T): EndPoints<T> => {
   const endPoints = {} as any;
