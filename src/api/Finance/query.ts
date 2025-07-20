@@ -1,14 +1,16 @@
-import { QUERY_KEYS } from "@/constants/Finance";
-
+import { defineQuery } from "@shared-vendor/helpers";
 import service from "@/api/Finance/service";
 
 export const useCategoriesQuery = () => {
-  const query = useQuery({
-    queryKey: QUERY_KEYS.GET_CATEGORIES,
+  const endPoints = useEndPoints();
+
+  const queryConfig = defineQuery({
+    queryKey: endPoints.finance.getCategories(),
     queryFn: service.getCategories,
     initialData: [],
-    initialDataUpdatedAt: 0,
   });
+
+  const query = useQuery(queryConfig);
 
   return query;
 };
@@ -16,12 +18,19 @@ export const useCategoriesQuery = () => {
 export const useTransactionsQuery = () => {
   const { startDate, endDate, categoryId } = useFinanceTransactionSearchParams();
 
-  const query = useQuery({
-    queryKey: [...QUERY_KEYS.GET_TRANSACTIONS, startDate, endDate, categoryId],
+  const endPoints = useEndPoints();
+
+  const queryConfig = defineQuery({
+    queryKey: endPoints.finance.getTransactions({
+      startDate,
+      endDate,
+      categoryId,
+    }),
     queryFn: ({ signal }) => service.getTransactions({ startDate, endDate, categoryId }, signal),
     initialData: [],
-    initialDataUpdatedAt: 0,
   });
+
+  const query = useQuery(queryConfig);
 
   return query;
 };
@@ -36,13 +45,15 @@ const TRANSACTION_REPORT_QUERY_INITIAL_DATA = {
 
 export const useTransactionReportQuery = () => {
   const { startDate, endDate } = useFinanceTransactionSearchParams();
+  const endPoints = useEndPoints();
 
-  const query = useQuery({
-    queryKey: [...QUERY_KEYS.GET_TRANSACTION_REPORT, startDate, endDate],
+  const queryConfig = defineQuery({
+    queryKey: endPoints.finance.getTransactionReport({ startDate, endDate }),
     queryFn: () => service.getTransactionReport({ startDate, endDate }),
     initialData: TRANSACTION_REPORT_QUERY_INITIAL_DATA,
-    initialDataUpdatedAt: 0,
   });
+
+  const query = useQuery(queryConfig);
 
   return query;
 };

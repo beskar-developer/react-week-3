@@ -1,11 +1,11 @@
 import type { RefreshTokenResponse, SigninResponse } from "@/types/Authentication";
 
 import { logout } from "@/helpers";
-import { Token } from "@shared-vendor/helpers";
+import { defineMutation, Token } from "@shared-vendor/helpers";
 import router from "@/router";
 
 import { ROUTES as MOVIE_ROUTES } from "@/constants/Movie";
-import { MUTATION_KEYS, ROUTES } from "@/constants/Authentication";
+import { ROUTES } from "@/constants/Authentication";
 
 import { localStorage } from "@shared-vendor/services";
 import service from "@/api/Authentication/service";
@@ -18,18 +18,34 @@ const onSigninSuccess = ({ accessToken, refreshToken, username, email }: SigninR
 
   router.navigate(MOVIE_ROUTES.ROOT_PATH);
 };
-const SIGNIN_MUTATION_CONFIG = mutationOptions({
-  mutationFn: service.signin,
-  mutationKey: MUTATION_KEYS.SIGNIN,
-  onSuccess: onSigninSuccess,
-});
+export const useSigninMutation = () => {
+  const endPoints = useEndPoints();
+
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.authentication.signin(),
+    mutationFn: service.signin,
+    onSuccess: onSigninSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
+
+  return mutation;
+};
 
 const onSignupSuccess = () => router.navigate(ROUTES.ROOT_PATH);
-const SIGNUP_MUTATION_CONFIG = mutationOptions({
-  mutationFn: service.signup,
-  mutationKey: MUTATION_KEYS.SIGNUP,
-  onSuccess: onSignupSuccess,
-});
+export const useSignupMutation = () => {
+  const endPoints = useEndPoints();
+
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.authentication.signup(),
+    mutationFn: service.signup,
+    onSuccess: onSignupSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
+
+  return mutation;
+};
 
 const onRefreshTokenSuccess = ({ accessToken, refreshToken }: RefreshTokenResponse) => {
   Token.setRefreshToken(refreshToken);
@@ -40,17 +56,21 @@ const onRefreshTokenError = (error: Error) => {
 
   logout();
 };
+export const useRefreshTokenMutation = () => {
+  const endPoints = useEndPoints();
 
-const REFRESH_TOKEN_MUTATION_CONFIG = mutationOptions({
-  mutationFn: service.refreshToken,
-  mutationKey: MUTATION_KEYS.REFRESH_TOKEN,
-  onError: onRefreshTokenError,
-  onSuccess: onRefreshTokenSuccess,
-});
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.authentication.refreshToken(),
+    mutationFn: service.refreshToken,
+    onError: onRefreshTokenError,
+    onSuccess: onRefreshTokenSuccess,
+  });
 
-export const useSigninMutation = () => useMutation(SIGNIN_MUTATION_CONFIG);
-export const useSignupMutation = () => useMutation(SIGNUP_MUTATION_CONFIG);
-export const useRefreshTokenMutation = () => useMutation(REFRESH_TOKEN_MUTATION_CONFIG);
+  const mutation = useMutation(mutationConfig);
+
+  return mutation;
+};
+
 export const useInitRefreshTokenMutation = () => {
   const mutation = useRefreshTokenMutation();
 

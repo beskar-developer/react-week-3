@@ -5,67 +5,61 @@ import type {
   EditCategoryResponse,
 } from "@/types/Finance";
 
-import { MUTATION_KEYS, QUERY_KEYS } from "@/constants/Finance";
-
 import { createAddUpdater, createDeleteUpdater, createEditUpdater } from "@/api/Finance/helper";
 
+import { defineMutation } from "@shared-vendor/helpers";
 import service from "@/api/Finance/service";
-
-const ADD_CATEGORY_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.ADD_CATEGORY,
-  mutationFn: service.addCategory,
-});
-const EDIT_CATEGORY_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.EDIT_CATEGORY,
-  mutationFn: service.editCategory,
-});
-const DELETE_CATEGORY_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.DELETE_CATEGORY,
-  mutationFn: service.deleteCategory,
-});
-
-const ADD_TRANSACTION_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.ADD_TRANSACTION,
-  mutationFn: service.addTransaction,
-});
-const EDIT_TRANSACTION_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.EDIT_TRANSACTION,
-  mutationFn: service.editTransaction,
-});
-const DELETE_TRANSACTION_MUTATION_CONFIG = mutationOptions({
-  mutationKey: MUTATION_KEYS.DELETE_TRANSACTION,
-  mutationFn: service.deleteTransaction,
-});
 
 export const useAddCategoryMutation = () => {
   const queryClient = useQueryClient();
+  const endPoints = useEndPoints();
 
   const onSuccess = ({ category }: AddCategoryResponse) =>
     queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createAddUpdater(category));
 
-  const mutation = useMutation({ onSuccess, ...ADD_CATEGORY_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.addCategory(),
+    mutationFn: service.addCategory,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
 
 export const useEditCategoryMutation = () => {
   const queryClient = useQueryClient();
+  const endPoints = useEndPoints();
 
   const onSuccess = ({ category }: EditCategoryResponse, { id }: EditCategoryPayload) =>
     queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createEditUpdater({ item: category, id }));
 
-  const mutation = useMutation({ onSuccess, ...EDIT_CATEGORY_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.editCategory(),
+    mutationFn: service.editCategory,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
 
 export const useDeleteCategoryMutation = () => {
   const queryClient = useQueryClient();
+  const endPoints = useEndPoints();
 
   const onSuccess = (_: unknown, id: DeleteCategoryPayload) =>
     queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createDeleteUpdater(id));
 
-  const mutation = useMutation({ onSuccess, ...DELETE_CATEGORY_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.deleteCategory(),
+    mutationFn: service.deleteCategory,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
@@ -88,24 +82,45 @@ const useOnTransactionSuccess = () => {
 
 export const useAddTransactionMutation = () => {
   const onSuccess = useOnTransactionSuccess();
+  const endPoints = useEndPoints();
 
-  const mutation = useMutation({ onSuccess, ...ADD_TRANSACTION_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.addTransaction(),
+    mutationFn: service.addTransaction,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
 
 export const useEditTransactionMutation = () => {
   const onSuccess = useOnTransactionSuccess();
+  const endPoints = useEndPoints();
 
-  const mutation = useMutation({ onSuccess, ...EDIT_TRANSACTION_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.editTransaction(),
+    mutationFn: service.editTransaction,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
 
 export const useDeleteTransactionMutation = () => {
   const onSuccess = useOnTransactionSuccess();
+  const endPoints = useEndPoints();
 
-  const mutation = useMutation({ onSuccess, ...DELETE_TRANSACTION_MUTATION_CONFIG });
+  const mutationConfig = defineMutation({
+    mutationKey: endPoints.finance.deleteTransaction(),
+    mutationFn: service.deleteTransaction,
+    onSuccess,
+  });
+
+  const mutation = useMutation(mutationConfig);
 
   return mutation;
 };
