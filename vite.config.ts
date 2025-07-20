@@ -61,6 +61,9 @@ const AUTO_IMPORT_CONFIG = {
       "@tanstack/query-async-storage-persister": ["createAsyncStoragePersister"],
       "@tanstack/react-query-persist-client": ["PersistQueryClientProvider"],
       "@tanstack/react-query-devtools": ["ReactQueryDevtools"],
+      "@reduxjs/toolkit": ["createSlice", "configureStore", "combineReducers", "createSelector"],
+      "redux-persist": ["persistReducer", "persistStore"],
+      "react-redux": ["useDispatch", "useSelector"],
     },
   ],
   dirs: [

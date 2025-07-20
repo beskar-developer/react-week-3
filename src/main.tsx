@@ -12,7 +12,9 @@ const rootElement = document.getElementById("root")!;
 const root = createRoot(rootElement);
 
 root.render(
-  <Compose components={[StrictMode, ThemeModeProvider, ErrorBoundary, Toaster, QueryClientProvider]}>
+  <Compose
+    components={[StrictMode, ReduxProvider, ThemeModeProvider, ErrorBoundary, Toaster, QueryClientProvider]}
+  >
     <App />
   </Compose>,
 );
