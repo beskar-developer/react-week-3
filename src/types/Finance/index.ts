@@ -51,7 +51,7 @@ export interface IRepository {
   addCategory: (payload: AddCategoryPayload) => Promise<AddCategoryResponse>;
   editCategory: (payload: EditCategoryPayload) => Promise<EditCategoryResponse>;
   deleteCategory: (payload: DeleteCategoryPayload) => Promise<DeleteCategoryResponse>;
-  getTransactions: (params: GetTransactionsParams) => Promise<GetTransactionsResponse>;
+  getTransactions: (params: GetTransactionsParams, signal?: AbortSignal) => Promise<GetTransactionsResponse>;
   addTransaction: (payload: AddTransactionPayload) => Promise<AddTransactionResponse>;
   editTransaction: (payload: EditTransactionPayload) => Promise<EditTransactionResponse>;
   deleteTransaction: (payload: DeleteCategoryPayload) => Promise<DeleteTransactionResponse>;

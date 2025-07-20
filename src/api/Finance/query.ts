@@ -18,7 +18,7 @@ export const useTransactionsQuery = () => {
 
   const query = useQuery({
     queryKey: [...QUERY_KEYS.GET_TRANSACTIONS, startDate, endDate, categoryId],
-    queryFn: () => service.getTransactions({ startDate, endDate, categoryId }),
+    queryFn: ({ signal }) => service.getTransactions({ startDate, endDate, categoryId }, signal),
     initialData: [],
     initialDataUpdatedAt: 0,
   });

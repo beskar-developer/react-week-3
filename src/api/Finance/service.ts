@@ -55,8 +55,8 @@ class Service implements IService {
     await repository.deleteCategory(payload);
   }
 
-  async getTransactions(params: GetTransactionsParams) {
-    const response = await repository.getTransactions(mapper.toGetTransactionParams(params));
+  async getTransactions(params: GetTransactionsParams, signal?: AbortSignal) {
+    const response = await repository.getTransactions(mapper.toGetTransactionParams(params), signal);
 
     const parsedResponse = prettifyParse(getTransactionsResponseSchema, response);
 

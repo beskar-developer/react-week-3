@@ -40,8 +40,8 @@ class Repository implements IRepository {
     return client.delete<unknown, DeleteCategoryResponse>(`category/${id}`);
   }
 
-  getTransactions(params: GetTransactionsParams) {
-    return client.get<unknown, GetTransactionsResponse>("transaction", { params });
+  getTransactions(params: GetTransactionsParams, signal?: AbortSignal) {
+    return client.get<unknown, GetTransactionsResponse>("transaction", { params, signal });
   }
 
   addTransaction(payload: AddTransactionPayload) {
