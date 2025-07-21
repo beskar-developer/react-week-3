@@ -77,9 +77,23 @@ const generateEndPoints = <T extends readonly Key[]>(keys: T): EndPoints<T> => {
 
 export type EndPoint = [string];
 export const useEndPoints = () => {
-  const movie = generateEndPoints(MOVIE_QUERY_KEYS);
-  const authentication = generateEndPoints(AUTHENTICATION_MUTATION_KEYS);
-  const finance = generateEndPoints([...FINANCE_MUTATION_KEYS, ...FINANCE_QUERY_KEYS]);
+  const movieEndPoints = generateEndPoints(MOVIE_QUERY_KEYS);
+  const authenticationEndPoints = generateEndPoints(AUTHENTICATION_MUTATION_KEYS);
+  const financeEndPoints = generateEndPoints([...FINANCE_MUTATION_KEYS, ...FINANCE_QUERY_KEYS]);
+
+  const movie = {
+    ...movieEndPoints,
+    QUERY_KEYS: MOVIE_QUERY_KEYS,
+  };
+  const authentication = {
+    ...authenticationEndPoints,
+    MUTATION_KEYS: AUTHENTICATION_MUTATION_KEYS,
+  };
+  const finance = {
+    ...financeEndPoints,
+    QUERY_KEYS: FINANCE_QUERY_KEYS,
+    MUTATION_KEYS: FINANCE_MUTATION_KEYS,
+  };
 
   return {
     movie,

@@ -1,6 +1,6 @@
 const FinanceRoot = () => {
   return (
-    <div>
+    <div className="h-full">
       <Outlet />
     </div>
   );

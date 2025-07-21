@@ -15,7 +15,7 @@ export const useAddCategoryMutation = () => {
   const endPoints = useEndPoints();
 
   const onSuccess = ({ category }: AddCategoryResponse) =>
-    queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createAddUpdater(category));
+    queryClient.setQueryData(endPoints.finance.getCategories(), createAddUpdater(category));
 
   const mutationConfig = defineMutation({
     mutationKey: endPoints.finance.addCategory(),
@@ -33,7 +33,7 @@ export const useEditCategoryMutation = () => {
   const endPoints = useEndPoints();
 
   const onSuccess = ({ category }: EditCategoryResponse, { id }: EditCategoryPayload) =>
-    queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createEditUpdater({ item: category, id }));
+    queryClient.setQueryData(endPoints.finance.getCategories(), createEditUpdater({ item: category, id }));
 
   const mutationConfig = defineMutation({
     mutationKey: endPoints.finance.editCategory(),
@@ -51,7 +51,7 @@ export const useDeleteCategoryMutation = () => {
   const endPoints = useEndPoints();
 
   const onSuccess = (_: unknown, id: DeleteCategoryPayload) =>
-    queryClient.setQueryData(QUERY_KEYS.GET_CATEGORIES, createDeleteUpdater(id));
+    queryClient.setQueryData(endPoints.finance.getCategories(), createDeleteUpdater(id));
 
   const mutationConfig = defineMutation({
     mutationKey: endPoints.finance.deleteCategory(),
@@ -66,13 +66,13 @@ export const useDeleteCategoryMutation = () => {
 
 const useOnTransactionSuccess = () => {
   const queryClient = useQueryClient();
+  const endPoints = useEndPoints();
+
+  const queryKeys = [endPoints.finance.QUERY_KEYS[0].key, endPoints.finance.QUERY_KEYS[1].key];
 
   const onSuccess = () => {
     queryClient.invalidateQueries({
-      predicate: ({ queryKey }) =>
-        [...QUERY_KEYS.GET_TRANSACTIONS, ...QUERY_KEYS.GET_TRANSACTION_REPORT].includes(
-          queryKey[0] as string,
-        ),
+      predicate: ({ queryKey }) => queryKeys.some((key) => String(queryKey).includes(key)),
       refetchType: "active",
     });
   };
