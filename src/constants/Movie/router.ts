@@ -3,4 +3,4 @@ export const ROUTES = Object.freeze({
   LIST_PATH: "list",
   DETAILS_PATH: "details/:id",
   LAYOUT_NAME: "Dashboard",
-});
+} as const);

@@ -1,13 +1,11 @@
 import type { Props as ButtonProps } from "@shared-vendor/components/Button/BaseButton.type";
 
-import { ROUTES } from "@/constants/Authentication";
-
 export const useAuthenticationSigninButton = ({
   isSubmitting,
 }: Pick<IAuthenticationButton, "isSubmitting">) => {
-  const navigate = useNavigate();
-
-  const redirectToSignup = () => navigate(`${ROUTES.ROOT_PATH}/${ROUTES.SIGNUP_PATH}`);
+  const {
+    authentication: { navigateToSignup },
+  } = useRouter();
 
   const actions: ButtonProps[] = [
     {
@@ -19,7 +17,7 @@ export const useAuthenticationSigninButton = ({
       children: "ثبت نام",
       type: "button",
       variant: "text",
-      onClick: redirectToSignup,
+      onClick: navigateToSignup,
     },
   ];
 

@@ -1,5 +1,7 @@
 export const MovieSearchField = () => {
-  const { search, setSearch } = useMovieSearchParams();
+  const {
+    movie: { search, setSearch },
+  } = useRouter();
 
   return (
     <TextField

@@ -4,4 +4,4 @@ export const ROUTES = Object.freeze({
   TRANSACTION_PATH: "transaction",
   REPORT_PATH: "report",
   LAYOUT_NAME: "Dashboard",
-});
+} as const);

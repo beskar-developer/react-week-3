@@ -1,10 +1,10 @@
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 export const MovieDetailsHeader = () => {
-  const { redirectToMovieList } = useMovieDetailsHeader();
+  const { navigateBack } = useRouter();
 
   return (
-    <BaseButton variant="text" className="max-w-min" onClick={redirectToMovieList}>
+    <BaseButton variant="text" className="max-w-min" onClick={navigateBack}>
       <AiOutlineArrowRight />
       بازگشت
     </BaseButton>

@@ -20,7 +20,9 @@ export const useGenresQuery = () => {
 
 export const useMovieDetailsQuery = () => {
   const endPoints = useEndPoints();
-  const { id } = useMovieDetailsParams();
+  const {
+    movie: { id },
+  } = useRouter();
 
   const queryConfig = defineQuery({
     queryKey: endPoints.movie.getMovieDetails(id),
@@ -42,7 +44,9 @@ const MOVIES_QUERY_INITIAL_DATA = {
 export const useMoviesQuery = () => {
   const endPoints = useEndPoints();
 
-  const { page, debouncedSearch } = useMovieSearchParams();
+  const {
+    movie: { page, debouncedSearch },
+  } = useRouter();
 
   const queryConfig = defineQuery({
     queryKey: endPoints.movie.getMovies(page, debouncedSearch),
