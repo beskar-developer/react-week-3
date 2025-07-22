@@ -3,6 +3,8 @@ export const FinanceCategoryModal = ({ children }: FragmentProps) => {
     <Modal>
       <FinanceCategoryDeleteModal />
 
+      <FinanceCategoryActionModal />
+
       {children}
     </Modal>
   );

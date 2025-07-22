@@ -9,5 +9,5 @@ export const DeleteModal = ({ label, isPending, onDelete }: Omit<IDeleteModal, "
     </div>
   );
 
-  return <Modal.Window name="DELETE" render={render} />;
+  return <Modal.Window name="DELETE" title="حذف" render={render} />;
 };

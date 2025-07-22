@@ -8,7 +8,7 @@ const actions = [
   {
     children: <AiFillEdit />,
     color: "success",
-    name: "EDIT",
+    name: "ACTION",
   },
 ] as const;
 
