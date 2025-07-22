@@ -10,7 +10,7 @@ export const useFinanceCategoryCardAction = ({ id }: Pick<Category, "id">) => {
   const createOnClick = (open: Open) => () => {
     setCategoryId(id);
 
-    open();
+    setTimeout(open, 100);
   };
 
   return { createOnClick };
