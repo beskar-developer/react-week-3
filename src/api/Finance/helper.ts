@@ -8,9 +8,10 @@ export const createEditUpdater =
   (items: T[]) => {
     const itemIndex = findByKey(items, id, { index: true });
 
-    items[itemIndex] = item;
+    const updatedItems = deepClone(items);
+    updatedItems[itemIndex] = item;
 
-    return items;
+    return updatedItems;
   };
 
 export const createDeleteUpdater =
