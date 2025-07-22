@@ -1,9 +1,7 @@
-export const FinanceCategoryHeader = () => {
-  return (
-    <header className="flex items-center justify-between">
-      <FinanceCategoryHeaderContent />
+import { AiFillFolder } from "react-icons/ai";
 
-      <FinanceCategoryHeaderAction />
-    </header>
-  );
+export const FinanceCategoryHeader = () => {
+  const { onAdd } = useFinanceCategoryHeader();
+
+  return <FinanceHeader label="دسته بندی ها" Icon={AiFillFolder} onAdd={onAdd} />;
 };

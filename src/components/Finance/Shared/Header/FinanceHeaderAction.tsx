@@ -1,9 +1,9 @@
 import { AiFillPlusCircle } from "react-icons/ai";
 
-type RenderParams = { open: IFinanceCategoryHeaderAction["onOpen"] };
+type RenderParams = { open: IFinanceHeaderAction["onOpen"] };
 
-export const FinanceCategoryHeaderAction = () => {
-  const { createOnClick } = useFinanceCategoryHeaderAction();
+export const FinanceHeaderAction = ({ onAdd }: Pick<IFinanceHeaderAction, "onAdd">) => {
+  const { createOnClick } = useFinanceHeaderAction({ onAdd });
 
   const render = ({ open }: RenderParams) => (
     <BaseButton className="w-32" onClick={createOnClick(open)}>
@@ -12,6 +12,8 @@ export const FinanceCategoryHeaderAction = () => {
       <AiFillPlusCircle />
     </BaseButton>
   );
+
+  if (!onAdd) return <></>;
 
   return <Modal.Open name="ACTION" render={render} />;
 };

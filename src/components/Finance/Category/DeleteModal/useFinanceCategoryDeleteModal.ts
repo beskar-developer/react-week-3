@@ -1,5 +1,6 @@
-import { useDeleteCategoryMutation } from "@/api/Finance/mutation";
 import type { IDeleteModal } from "@/components/Shared/DeleteModal/type";
+
+import { useDeleteCategoryMutation } from "@/api/Finance/mutation";
 
 export const useFinanceCategoryDeleteModal = () => {
   const { mutate, isPending } = useDeleteCategoryMutation();

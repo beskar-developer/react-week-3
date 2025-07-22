@@ -1,5 +1,4 @@
 import type { Props as ButtonProps } from "@shared-vendor/components/Button/BaseButton.type";
-import type { Category } from "@/types/Finance";
 
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
@@ -12,8 +11,8 @@ const actions = [
   },
 ] as const;
 
-export const FinanceCategoryCardAction = ({ id }: Pick<Category, "id">) => {
-  const { createOnClick } = useFinanceCategoryCardAction({ id });
+export const FinanceCardAction = ({ id, onAction }: IFinanceCardAction) => {
+  const { createOnClick } = useFinanceCardAction({ id, onAction });
 
   const render = (action: ButtonProps) => <BaseButton icon variant="text" {...action} />;
 

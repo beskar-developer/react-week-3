@@ -1,6 +1,6 @@
 const FinanceCategory = () => {
   return (
-    <div className="flex h-full flex-col gap-8 px-4 py-6">
+    <div className="flex h-full flex-col gap-8">
       <FinanceCategoryModal>
         <FinanceCategoryHeader />
 

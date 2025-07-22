@@ -14,6 +14,7 @@ const FINANCE_KEYS = {
   START_DATE: "startDate",
   END_DATE: "endDate",
   CATEGORY_ID: "categoryId",
+  TRANSACTION_ID: "transactionId",
 };
 const DEFAULT_SEARCH_PARAM_VALUE = "";
 
@@ -57,9 +58,11 @@ export const useRouter = () => {
     startDate: searchParams.get(FINANCE_KEYS.START_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE,
     endDate: searchParams.get(FINANCE_KEYS.END_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE,
     categoryId: searchParams.get(FINANCE_KEYS.CATEGORY_ID) ?? DEFAULT_SEARCH_PARAM_VALUE,
+    transactionId: searchParams.get(FINANCE_KEYS.TRANSACTION_ID) ?? DEFAULT_SEARCH_PARAM_VALUE,
     setStartDate: createSetSearchParam(setSearchParams, FINANCE_KEYS.START_DATE),
     setEndDate: createSetSearchParam(setSearchParams, FINANCE_KEYS.END_DATE),
     setCategoryId: createSetSearchParam(setSearchParams, FINANCE_KEYS.CATEGORY_ID),
+    setTransactionId: createSetSearchParam(setSearchParams, FINANCE_KEYS.TRANSACTION_ID),
   };
 
   const movieSearch = searchParams.get(MOVIE_KEYS.SEARCH) ?? DEFAULT_SEARCH_PARAM_VALUE;

@@ -16,7 +16,9 @@ export const useCategoriesQuery = () => {
 };
 
 export const useTransactionsQuery = () => {
-  const { startDate, endDate, categoryId } = useFinanceTransactionSearchParams();
+  const {
+    finance: { startDate, endDate, categoryId },
+  } = useRouter();
 
   const endPoints = useEndPoints();
 
@@ -44,7 +46,9 @@ const TRANSACTION_REPORT_QUERY_INITIAL_DATA = {
 };
 
 export const useTransactionReportQuery = () => {
-  const { startDate, endDate } = useFinanceTransactionSearchParams();
+  const {
+    finance: { startDate, endDate },
+  } = useRouter();
   const endPoints = useEndPoints();
 
   const queryConfig = defineQuery({
