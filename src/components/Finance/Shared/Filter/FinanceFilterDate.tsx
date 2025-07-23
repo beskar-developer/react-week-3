@@ -1,4 +1,4 @@
-export const FinanceTransactionFilterDate = () => {
+export const FinanceFilterDate = () => {
   const {
     finance: { date, setDate },
   } = useRouter();

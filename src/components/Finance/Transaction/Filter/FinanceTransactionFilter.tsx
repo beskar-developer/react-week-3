@@ -3,9 +3,9 @@ export const FinanceTransactionFilter = () => {
     <div className="grid grid-cols-[1fr_1fr_auto] items-end gap-4 px-4">
       <FinanceTransactionFilterSelect />
 
-      <FinanceTransactionFilterDate />
+      <FinanceFilterDate />
 
-      <FilterTransactionResetButton />
+      <FinanceFilterResetButton />
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const addCategoryResponseSchema = z.object({
 });
 export const editCategoryResponseSchema = addCategoryResponseSchema.clone();
 
-const amountSchema = z.number().nonnegative();
+const amountSchema = z.number();
 export const transactionSchema = z.object({
   id: z.string(),
   amount: amountSchema,

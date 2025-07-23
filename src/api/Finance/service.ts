@@ -84,7 +84,7 @@ class Service implements IService {
   }
 
   async getTransactionReport(params: GetTransactionReportParams) {
-    const response = await repository.getTransactionReport(params);
+    const response = await repository.getTransactionReport(mapper.toGetTransactionReportParams(params));
 
     const parsedResponse = prettifyParse(getTransactionReportResponseSchema, response);
 

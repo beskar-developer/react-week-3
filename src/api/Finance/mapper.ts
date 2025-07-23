@@ -16,6 +16,10 @@ class Mapper {
   static toGetTransactionParams(params: GetTransactionsParams) {
     return Mapper.removeEmptyValues(params);
   }
+
+  static toGetTransactionReportParams(params: GetTransactionsParams) {
+    return Mapper.removeEmptyValues(params);
+  }
 }
 
 export default Mapper;

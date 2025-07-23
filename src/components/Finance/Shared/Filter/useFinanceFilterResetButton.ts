@@ -1,4 +1,4 @@
-export const useFinanceTransactionResetButton = () => {
+export const useFinanceFilterResetButton = () => {
   const {
     finance: { setCategoryId, setStartDate, setEndDate },
   } = useRouter();
