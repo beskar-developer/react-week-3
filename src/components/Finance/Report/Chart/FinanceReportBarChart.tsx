@@ -30,7 +30,7 @@ export const FinanceReportBarChart = () => {
 
             <XAxis dataKey="name" />
 
-            <YAxis />
+            <YAxis tickFormatter={convertNumberToLocaleString} />
 
             <Tooltip />
 
