@@ -38,8 +38,8 @@ export const FinanceReportBarChart = () => {
 
             <ReferenceLine y={0} stroke="#000" />
 
-            {bars.map((bar) => (
-              <Bar {...bar} />
+            {bars.map((bar, index) => (
+              <Bar key={index} {...bar} />
             ))}
           </BarChart>
         </ResponsiveContainer>
