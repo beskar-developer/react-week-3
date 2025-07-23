@@ -5,7 +5,7 @@ const FinanceReport = () => {
 
       <FinanceReportFilter />
 
-      <FinanceReportStatistics />
+      <FinanceReportContent />
     </div>
   );
 };

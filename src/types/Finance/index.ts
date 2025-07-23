@@ -43,6 +43,8 @@ export type AddTransactionResponse = z.infer<typeof addTransactionResponseSchema
 export type EditTransactionResponse = z.infer<typeof editTransactionResponseSchema>;
 export type DeleteTransactionResponse = void;
 
+export type TransactionReport = z.infer<typeof getTransactionReportResponseSchema>;
+
 export type GetTransactionReportParams = Omit<GetTransactionsParams, "categoryId">;
 export type GetTransactionReportResponse = z.infer<typeof getTransactionReportResponseSchema>;
 
