@@ -8,4 +8,5 @@ export type FinanceCategorySelectOption = {
 export interface IFinanceCategorySelect {
   value: Category["id"];
   onChange: (value: Category["id"]) => void;
+  disabled?: boolean;
 }

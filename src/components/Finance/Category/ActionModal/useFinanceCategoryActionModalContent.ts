@@ -4,6 +4,8 @@ import { CATEGORY_TYPE_OPTIONS } from "@/constants/Finance";
 
 import { useAddCategoryMutation, useEditCategoryMutation } from "@/api/Finance/mutation";
 
+type FinanceCategoryFormValues = Pick<Category, "name">;
+
 const DEFAULT_FORM_VALUES: FinanceCategoryFormValues = {
   name: "",
 };
@@ -22,7 +24,7 @@ const nameField = {
   },
 } as const;
 
-export const useFinanceCategoryActionModalContent = ({ onClose }: IFinanceCategoryActionModalContent) => {
+export const useFinanceCategoryActionModalContent = ({ onClose }: IFinanceActionModalContent) => {
   const { categories, categoryId, isEdit, title } = useFinanceCategoryActionModal();
 
   const addMutation = useAddCategoryMutation();

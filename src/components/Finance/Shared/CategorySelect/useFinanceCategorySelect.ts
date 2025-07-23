@@ -2,7 +2,7 @@ import type { Category } from "@/types/Finance";
 
 import { useCategoriesQuery } from "@/api/Finance/query";
 
-export const useFinanceCategorySelect = ({ value, onChange }: IFinanceCategorySelect) => {
+export const useFinanceCategorySelect = ({ value, disabled, onChange }: IFinanceCategorySelect) => {
   const { data: categories, isFetching } = useCategoriesQuery();
 
   const getCategoryTypeById = (id: Category["id"]) => findByKey(categories, id)!.type;
@@ -16,7 +16,7 @@ export const useFinanceCategorySelect = ({ value, onChange }: IFinanceCategorySe
     label: "دسته بندی",
     name: "category",
     options,
-    disabled: isFetching,
+    disabled: isFetching || disabled,
     value,
     onChange,
   };

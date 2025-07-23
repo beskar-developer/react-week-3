@@ -1,8 +1,4 @@
-export const useFinanceCategoryActionModalButton = ({
-  label,
-  isSubmitting,
-  onClose,
-}: IFinanceCategoryActionModalButton) => {
+export const useFinanceActionModalButton = ({ label, isSubmitting, onClose }: IFinanceActionModalButton) => {
   const actions = [
     {
       name: "ADD",

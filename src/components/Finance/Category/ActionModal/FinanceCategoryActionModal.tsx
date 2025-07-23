@@ -1,6 +1,6 @@
 "use no memo";
 
-type RenderParams = { close: IFinanceCategoryActionModalContent["onClose"] };
+type RenderParams = { close: IFinanceActionModalContent["onClose"] };
 
 export const FinanceCategoryActionModal = () => {
   const { title } = useFinanceCategoryActionModal();

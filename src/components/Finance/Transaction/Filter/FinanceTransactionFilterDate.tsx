@@ -6,8 +6,8 @@ export const FinanceTransactionFilterDate = () => {
   return (
     <DateField
       fieldClassName="bg-primary-100"
-      value={date}
-      onChange={setDate}
+      date={date}
+      onDateChange={setDate}
       name="dateRange"
       label="بازه زمانی"
       range

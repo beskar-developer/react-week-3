@@ -1,5 +1,5 @@
-export const FinanceCategorySelect = ({ value, onChange }: IFinanceCategorySelect) => {
-  const { field, getCategoryTypeById } = useFinanceCategorySelect({ value, onChange });
+export const FinanceCategorySelect = ({ value, disabled, onChange }: IFinanceCategorySelect) => {
+  const { field, getCategoryTypeById } = useFinanceCategorySelect({ value, disabled, onChange });
 
   const renderLabel = ({ value, label }: FinanceCategorySelectOption) => (
     <>

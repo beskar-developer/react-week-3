@@ -17,7 +17,7 @@ export const FinanceCardAction = ({ id, onAction }: IFinanceCardAction) => {
   const render = (action: ButtonProps) => <BaseButton icon variant="text" {...action} />;
 
   return (
-    <div className="flex items-center self-center">
+    <div className="mt-auto flex items-center self-center">
       {actions.map((action) => (
         <Modal.Open
           name={action.name}

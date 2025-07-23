@@ -1,11 +1,13 @@
-export const FinanceCategoryActionModalContent = ({ onClose }: IFinanceActionModalContent) => {
-  const { fields, title, isSubmitting, errors, register, onSubmit } = useFinanceCategoryActionModalContent({
-    onClose,
-  });
+export const FinanceTransactionActionModalContent = ({ onClose }: IFinanceActionModalContent) => {
+  const { fields, title, isSubmitting, errors, register, onSubmit } = useFinanceTransactionActionModalContent(
+    {
+      onClose,
+    },
+  );
 
   return (
     <form className="flex flex-col gap-8 px-4" onSubmit={onSubmit}>
-      <FinanceCategoryActionModalFields
+      <FinanceTransactionActionModalFields
         fields={fields}
         errors={errors}
         isSubmitting={isSubmitting}
