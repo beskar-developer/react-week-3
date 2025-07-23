@@ -4,6 +4,8 @@ const FinanceTransaction = () => {
       <FinanceTransactionModal>
         <FinanceTransactionHeader />
 
+        <FinanceTransactionFilter />
+
         <FinanceTransactionList />
       </FinanceTransactionModal>
     </div>

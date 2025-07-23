@@ -53,16 +53,27 @@ export const useRouter = () => {
     navigateToSignup: () => navigate(authenticationRoutes.SIGNUP_PATH),
   };
 
+  const financeStartDate = searchParams.get(FINANCE_KEYS.START_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE;
+  const financeEndDate = searchParams.get(FINANCE_KEYS.END_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE;
+  const setFinanceStartDate = createSetSearchParam(setSearchParams, FINANCE_KEYS.START_DATE);
+  const setFinanceEndDate = createSetSearchParam(setSearchParams, FINANCE_KEYS.END_DATE);
+  const financeSetDate = ([startDate, endDate]: string[]) => {
+    if (startDate) setFinanceStartDate(startDate);
+    if (endDate) setFinanceEndDate(endDate);
+  };
+
   const finance = {
     routes: financeRoutes,
-    startDate: searchParams.get(FINANCE_KEYS.START_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE,
-    endDate: searchParams.get(FINANCE_KEYS.END_DATE) ?? DEFAULT_SEARCH_PARAM_VALUE,
+    startDate: financeStartDate,
+    endDate: financeEndDate,
     categoryId: searchParams.get(FINANCE_KEYS.CATEGORY_ID) ?? DEFAULT_SEARCH_PARAM_VALUE,
     transactionId: searchParams.get(FINANCE_KEYS.TRANSACTION_ID) ?? DEFAULT_SEARCH_PARAM_VALUE,
-    setStartDate: createSetSearchParam(setSearchParams, FINANCE_KEYS.START_DATE),
-    setEndDate: createSetSearchParam(setSearchParams, FINANCE_KEYS.END_DATE),
+    setStartDate: setFinanceStartDate,
+    setEndDate: setFinanceEndDate,
     setCategoryId: createSetSearchParam(setSearchParams, FINANCE_KEYS.CATEGORY_ID),
     setTransactionId: createSetSearchParam(setSearchParams, FINANCE_KEYS.TRANSACTION_ID),
+    date: [financeStartDate, financeEndDate],
+    setDate: financeSetDate,
   };
 
   const movieSearch = searchParams.get(MOVIE_KEYS.SEARCH) ?? DEFAULT_SEARCH_PARAM_VALUE;
