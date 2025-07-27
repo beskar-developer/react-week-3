@@ -15,6 +15,11 @@ type Route = RouteObject & {
   authentication?: boolean | "ignore";
   loader?: LoaderFunction;
   layout?: string;
+  access?: AclAccess;
+};
+type WrapRouteOptions = {
+  layout: Route["layout"];
+  access: Route["access"];
 };
 
 const redirectToAuthentication = () => {
@@ -37,12 +42,18 @@ const wrapLoader =
     else if (isAuthenticated && !authentication) return redirect(SHARED_ROUTES.ROOT_PATH);
   };
 
-const wrapRoute = (route: RouteObject, layout: Route["layout"]) => {
-  if (!layout) return route;
+const wrapRoute = (route: RouteObject, { layout, access }: WrapRouteOptions) => {
+  const protectedRoute = {
+    lazy: lazyRoute(() => import("@/components/Shared/Navigation/ProtectedRoute")),
+    children: [route],
+    loader: () => ({ access }),
+  };
+
+  if (!layout) return protectedRoute;
 
   return defineRoute({
     module: () => import(`../layouts/${layout}Layout.tsx`),
-    children: [route],
+    children: [protectedRoute],
   });
 };
 
@@ -51,6 +62,7 @@ export function defineRoute({
   loader,
   authentication = "ignore",
   layout,
+  access,
   ...routeAttrs
 }: Route): RouteObject {
   const wrappedLoader = wrapLoader(loader, authentication);
@@ -61,7 +73,7 @@ export function defineRoute({
     ...routeAttrs,
   };
 
-  const wrappedRoute = wrapRoute(route, layout);
+  const wrappedRoute = wrapRoute(route, { layout, access });
 
   return wrappedRoute;
 }

@@ -24,6 +24,7 @@ const routes: RouteObject[] = [
       defineRoute({
         path: ROUTES.REPORT_PATH,
         module: () => import("@/views/Finance/FinanceReport"),
+        access: createAccess("ADMIN").or("USER"),
       }),
     ],
   }),

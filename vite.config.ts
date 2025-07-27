@@ -48,7 +48,14 @@ const AUTO_IMPORT_CONFIG = {
       "motion/react": ["AnimatePresence"],
       "tailwind-merge": ["twMerge"],
       "react-hot-toast": [["default", "toast"]],
-      "react-router": ["createHashRouter", "Outlet", "redirect", "generatePath", "useSearchParams"],
+      "react-router": [
+        "createHashRouter",
+        "Outlet",
+        "redirect",
+        "generatePath",
+        "useSearchParams",
+        "useLoaderData",
+      ],
       "@tanstack/react-query": [
         "useQuery",
         "useMutation",
